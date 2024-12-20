@@ -16,6 +16,9 @@ class Category
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
+    #[ORM\OneToOne(mappedBy: 'category', cascade: ['persist', 'remove'])]
+    private ?Article $article = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -29,6 +32,23 @@ class Category
     public function setTitle(string $title): static
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function getArticle(): ?Article
+    {
+        return $this->article;
+    }
+
+    public function setArticle(Article $article): static
+    {
+        // set the owning side of the relation if necessary
+        if ($article->getCategory() !== $this) {
+            $article->setCategory($this);
+        }
+
+        $this->article = $article;
 
         return $this;
     }

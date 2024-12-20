@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-class ArticleController extends AbstractController
+class AdminArticleController extends AbstractController
 {
 
     #[Route('/admin/list-articles', name: 'admin_list_articles', methods: ['GET'])]
@@ -61,7 +61,7 @@ class ArticleController extends AbstractController
 
             return $this->redirectToRoute('admin_list_articles');
         }
-        return $this->render('admin/articles/create.html.twig', [
+        return $this->render('admin/articles/edit.html.twig', [
             'formView' => $formView,
         ]);
     }
