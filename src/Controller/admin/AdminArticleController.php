@@ -38,7 +38,7 @@ class AdminArticleController extends AbstractController
             $entityManager->persist($article);
             $entityManager->flush();
 
-            return $this->redirectToRoute('create_articles');
+            return $this->redirectToRoute('admin_list_articles');
         }
         return $this->render('admin/articles/create.html.twig', [
             'formView' => $formView,
@@ -50,11 +50,11 @@ class AdminArticleController extends AbstractController
     {
         $articleEdited = $articleRepository->find($id);
 
-        $formCreateArticle = $this->createForm(ArticleType::class, $articleEdited);
-        $formCreateArticle->handleRequest($request);
-        $formView = $formCreateArticle->createView();
+        $formEditArticle = $this->createForm(ArticleType::class, $articleEdited);
+        $formEditArticle->handleRequest($request);
+        $formView = $formEditArticle->createView();
 
-        if ($formCreateArticle->isSubmitted() && $formCreateArticle->isValid()) {
+        if ($formEditArticle->isSubmitted() && $formEditArticle->isValid()) {
 
             $entityManager->persist($articleEdited);
             $entityManager->flush();
