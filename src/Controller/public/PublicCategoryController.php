@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class PublicCategoryController extends AbstractController
 {
-    #[Route('/public/list-categories', name: 'public_list_categories')]
+    #[Route('/list-categories', name: 'public_list_categories')]
     public function publicListCategories(CategoryRepository $categoryRepository): Response
     {
        $categories = $categoryRepository->findAll();
@@ -18,7 +18,7 @@ class PublicCategoryController extends AbstractController
            'categories' => $categories
        ]);
     }
-    #[Route('/public/show-category/{id}', name: 'public_show_category', methods: ['GET'])]
+    #[Route('/show-category/{id}', name: 'public_show_category', methods: ['GET'])]
 public function publicShowCategory(CategoryRepository $categoryRepository, int $id): Response
     {
         $category = $categoryRepository->find($id);

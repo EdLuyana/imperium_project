@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if error %}
+        <div class="alert alert-danger text-center">{{ error.messageKey }}</div>
+    {% endif %}
+
+    <div class="container mt-5">
+        <section class="mb-5">
+            <h3 class="text-start">Connectez-vous</h3>
+            <div class="d-flex justify-content-center">
+                <form action="{{ path('login') }}" method="post" class="w-50">
+                    <div class="mb-3">
+                        <label for="login-email" class="form-label">Email</label>
+                        <input type="text" id="login-email" name="_username" class="form-control" value="{{ lastUsername }}" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="login-password" class="form-label">Mot de Passe</label>
+                        <input type="password" id="login-password" name="_password" class="form-control" />
+                    </div>
+
+                    <div class="text-center">
+                        <input type="submit" value="Se connecter" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section>
+            <h3 class="text-start">Enregistrez-vous</h3>
+            <div class="d-flex justify-content-center">
+                <form action="{{ path('login') }}" method="post" class="w-50">
+                    <div class="mb-3">
+                        <label for="register-username" class="form-label">Username</label>
+                        <input type="text" id="register-username" name="_username" class="form-control" value="{{ lastUsername }}" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="register-password" class="form-label">Password</label>
+                        <input type="password" id="register-password" name="_password" class="form-control" />
+                    </div>
+
+                    <div class="text-center">
+                        <input type="submit" value="S'enregistrer" class="btn btn-success" />
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+{% endblock %}

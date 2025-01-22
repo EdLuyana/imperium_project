@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin - Créer un Article{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h2>Créer un nouvel Article</h2>
+
+        {{ form_start(formView) }}
+        <div class="form-group">
+            {{ form_label(formView.title) }}
+            {{ form_widget(formView.title, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(formView.description) }}
+            {{ form_widget(formView.description, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(formView.image) }}
+            {{ form_widget(formView.image, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(formView.category) }}
+            {{ form_widget(formView.category, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Créer</button>
+        {{ form_end(formView) }}
+
+        <a href="{{ path('admin_list_articles') }}" class="btn btn-secondary mt-3">Retour</a>
+    </div>
+{% endblock %}

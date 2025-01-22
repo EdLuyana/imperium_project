@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin - Liste des Articles{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h2>Liste des Articles</h2>
+
+        <a href="{{ path('create_articles') }}" class="btn btn-primary mb-3">Créer un Article</a>
+
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Catégorie</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for article in articles %}
+                <tr>
+                    <td>{{ article.title }}</td>
+                    <td>{{ article.description | slice(0, 50) ~ '...' }}</td>
+                    <td>{{ article.category.title }}</td>
+                    <td>
+                        <a href="{{ path('edit_article', {id: article.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
+                        <form method="post" action="{{ path('delete_article', {id: article.id}) }}" style="display:inline-block;" onsubmit="return confirm('Êtes-vous sûr ?');">
+                            <button class="btn btn-danger btn-sm">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" class="text-center">Aucun article trouvé.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

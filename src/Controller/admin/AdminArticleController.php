@@ -23,7 +23,7 @@ class AdminArticleController extends AbstractController
         return $this->render('admin/articles/list.html.twig', ['articles' => $articles]);
     }
 
-    #[Route('/admin/create-article', 'create_articles', methods: ['POST'])]
+    #[Route('/admin/create-article', 'create_articles', methods: ['POST', 'GET'])]
     public function createArticle(EntityManagerInterface $entityManager, Request $request)
     {
 
@@ -31,15 +31,23 @@ class AdminArticleController extends AbstractController
 
         $formCreateArticle = $this->createForm(ArticleType::class, $article);
         $formCreateArticle->handleRequest($request);
-        $formView = $formCreateArticle->createView();
 
         if ($formCreateArticle->isSubmitted() && $formCreateArticle->isValid()) {
+            $imageFile = $formCreateArticle->get('image')->getData();
+
+            if ($imageFile) {
+
+                $newFileName = uniqid() . '.' . $imageFile->guessExtension();
+                $imageFile->move($this->getParameter('images_directory'), $newFileName);
+                $article->setImage($newFileName);
+            }
 
             $entityManager->persist($article);
             $entityManager->flush();
 
             return $this->redirectToRoute('admin_list_articles');
         }
+        $formView = $formCreateArticle->createView();
         return $this->render('admin/articles/create.html.twig', [
             'formView' => $formView,
         ]);
@@ -52,26 +60,41 @@ class AdminArticleController extends AbstractController
 
         $formEditArticle = $this->createForm(ArticleType::class, $articleEdited);
         $formEditArticle->handleRequest($request);
-        $formView = $formEditArticle->createView();
+
 
         if ($formEditArticle->isSubmitted() && $formEditArticle->isValid()) {
+            $imageFile = $formEditArticle->get('image')->getData();
+
+            if ($imageFile) {
+
+                if($articleEdited->getImageFilename()){
+                    unlink($this->getParameter('images_directory').'/'.$articleEdited->getImage());
+                }
+                $newFileName = uniqid() . '.' . $imageFile->guessExtension();
+                $imageFile->move($this->getParameter('images_directory'), $newFileName);
+                $articleEdited->setImageFilename($newFileName);
+            }
 
             $entityManager->persist($articleEdited);
             $entityManager->flush();
 
             return $this->redirectToRoute('admin_list_articles');
         }
+        $formView = $formEditArticle->createView();
         return $this->render('admin/articles/edit.html.twig', [
             'formView' => $formView,
         ]);
     }
 
-    #[Route('/admin/delete-article', 'delete_article', methods: ['POST'])]
+    #[Route('/admin/delete-article/{id}', 'delete_article', methods: ['POST'])]
     public function deleteArticle(int $id, EntityManagerInterface $entityManager, ArticleRepository $articleRepository)
     {
 
         $articleToDelete = $articleRepository->find($id);
-
+        if (!$articleToDelete) {
+            $this->addFlash('error', 'Article introuvable.');
+            return $this->redirectToRoute('admin_list_articles');
+        }
         $entityManager->remove($articleToDelete);
         $entityManager->flush();
 

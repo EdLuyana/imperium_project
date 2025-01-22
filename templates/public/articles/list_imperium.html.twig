@@ -1,0 +1,110 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h2 class="colorred fontsz6 mrgleft">L'imperium</h2>
+
+    <section>
+        <h3 class="fontsz4 mrgleft">Nos Actions</h3>
+        <div id="actionsCarousel" class="carousel slide bgblue col-11 offset-1 height65" ">
+        <!-- Indicateurs du carrousel -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#actionsCarousel" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#actionsCarousel" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+        </div>
+
+        <!-- Contenu du carrousel -->
+        <div class="carousel-inner posrel">
+            <!-- Premier article -->
+            <div class="carousel-item active">
+                <div class="d-flex align-items-center">
+                    <!-- Colonne de l'image -->
+                    <div class="col-6 height60 mrg2 d-flex flex-column align-items-center">
+                        <div class="widthauto height50 container-img posrel">
+                            <img src="{{ asset('assets/img/Ope_orks.jpg') }}" class=" img-cover img-fluid "
+                                 alt="Opération Secteur Sigma">
+                        </div>
+                        <h5 class="colorsand fontsz2">Operation: Secteur Sigma</h5>
+                    </div>
+
+                    <!-- Colonne du texte -->
+                    <div class="col-7 d-flex flex-column">
+
+                        <p class="col-7 colorwhite">
+                            Citoyens de l’Imperium,<br>
+                            En ces heures sombres où les étoiles tremblent sous la menace xéno, l'Imperium prouve
+                            une fois de plus sa détermination inébranlable à défendre l’humanité contre les
+                            abominations...
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deuxième article -->
+            <div class="carousel-item">
+                <div class="d-flex align-items-center">
+                    <!-- Colonne de l'image -->
+                    <div class="col-6 height60 mrg2 d-flex flex-column align-items-center">
+                        <div class="widthauto height50 container-img posrel">
+                            <img src="{{ asset('assets/img/Ope_tyranids.png') }}" class="img-fluid img-cover"
+                                 alt="Opération Secteur Sigma">
+                        </div>
+                        <h5 class="colorsand fontsz2">Operation: Secteur Terminus</h5>
+                    </div>
+                    <!-- Colonne du texte -->
+                    <div class="col-7 d-flex flex-column">
+
+                        <p class="col-7 colorwhite">
+                            Citoyens de l'Imperium,<br>
+                            Le Secteur Terminus, dernier bastion humain face à la vague insatiable des Tyranides, se
+                            dresse tel un rempart inviolable contre les ténèbres rampantes de la Grande Faille...
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contrôles du carrousel -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#actionsCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#actionsCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+        </div>
+    </section>
+
+    <section class="mt-5">
+        <h3 class="fontsz4 mrgleft">Nos Armées</h3>
+        <div class="horizontal-scroll bgblue col-11 offset-1 posrel">
+            <ul class="scrollable-list">
+                <li class="col-3 text-center mrgleft1">
+                    <div><img src="{{ asset('assets/img/Imperial_guard.jpg') }}" class="img-fluid" alt=""></div>
+                    <h6 class="colorsand mt-2 fontsz2">Garde Impériale</h6>
+                </li>
+                <li class="col-3 text-center">
+                    <div><img src="{{ asset('assets/img/Tech_priest.jpg') }}" class="img-fluid" alt=""></div>
+                    <h6 class="colorsand mt-2 fontsz2">Mecanicus</h6>
+                </li>
+                <li class="col-3 text-center">
+                    <div><img src="{{ asset('assets/img/Space_marine_1.png') }}" class="img-fluid" alt=""></div>
+                    <h6 class="colorsand mt-2 fontsz2">Space Marines</h6>
+                </li>
+                <li class="col-3 text-center">
+                    <div><img src="{{ asset('assets/img/Inquisitor.png') }}" class="img-fluid" alt=""></div>
+                    <h6 class="colorsand mt-2 fontsz2">L'Inquisition</h6>
+                </li>
+                <li class="col-3 text-center">
+                    <div><img src="{{ asset('assets/img/Sororitas.png') }}" class="img-fluid" alt=""></div>
+                    <h6 class="colorsand mt-2 fontsz2">Adepta Sororitas</h6>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+
+{% endblock %}

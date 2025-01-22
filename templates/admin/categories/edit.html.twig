@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier une catégorie{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h2 class="mb-4">Modifier la catégorie</h2>
+        {{ form_start(formView, { 'attr': { 'class': 'form' } }) }}
+        <div class="mb-3">
+            {{ form_label(formView.title, 'Titre de la catégorie', { 'label_attr': { 'class': 'form-label' } }) }}
+            {{ form_widget(formView.title, { 'attr': { 'class': 'form-control' } }) }}
+            {{ form_errors(formView.title) }}
+        </div>
+        <button type="submit" class="btn btn-primary">Modifier</button>
+        {{ form_end(formView) }}
+        <a href="{{ path('admin_list_categories') }}" class="btn btn-secondary mt-3">Retour à la liste</a>
+    </div>
+{% endblock %}

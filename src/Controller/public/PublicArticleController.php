@@ -9,22 +9,19 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class PublicArticleController extends AbstractController
 {
-    #[Route('/public/list-articles', name: 'public_list_articles')]
-    public function publicListArticles(ArticleRepository $articleRepository): Response
+    #[Route('/list-articles/imperium', name: 'imperium')]
+    public function publicListArticlesImperium(ArticleRepository $articleRepository): Response
     {
         $articles = $articleRepository->findAll();
 
-        return $this->render('public/articles/list.html.twig', ['articles' => $articles]);
+        return $this->render('public/articles/list_imperium.html.twig', ['articles' => $articles]);
     }
-#[Route('/public/show-article/{id}', 'public_show_article', methods: ['GET'])]
-    public function publicShowArticle(ArticleRepository $articleRepository, int $id): Response
+#[Route('/list-articles/together', 'together', methods: ['GET'])]
+    public function publicListArticleTogether(ArticleRepository $articleRepository): Response
 {
-    $article = $articleRepository->find($id);
 
-    if(!$article) {
-    $this->addFlash('error', 'Article not found');
-    return $this->redirectToRoute('public_list_articles');
-    }
-    return $this->render('public/articles/show.html.twig', ['article' => $article]);
+    $article = $articleRepository->findAll();
+
+    return $this->render('public/articles/list_together.html.twig', ['article' => $article]);
     }
 }

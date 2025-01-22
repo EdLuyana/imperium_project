@@ -64,16 +64,22 @@ class AdminCategoryController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/delete-category', name: 'admin_delete_category', methods: ['POST'])]
-    public function deleteCategory(int $id, Request $request, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository): Response
+    #[Route('/admin/delete-category/{id}', name: 'admin_delete_category', methods: ['POST'])]
+    public function deleteCategory(int $id, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository): Response
     {
-
         $categoryDeleted = $categoryRepository->find($id);
+
+        if (!$categoryDeleted) {
+            $this->addFlash('error', 'Catégorie introuvable.');
+            return $this->redirectToRoute('admin_list_categories');
+        }
 
         $entityManager->remove($categoryDeleted);
         $entityManager->flush();
 
+        $this->addFlash('success', 'Catégorie supprimée avec succès.');
         return $this->redirectToRoute('admin_list_categories');
     }
+
 
 }

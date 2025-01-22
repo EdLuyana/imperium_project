@@ -1,1 +1,23 @@
-home
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <section class="container-section mt-5 posrel">
+        <a class="colorsand" href="{{ path('imperium') }}">
+        <div class="container-img filter overflow-hidden posrel">
+            <img class="imgfull" src="{{ asset('assets/img/Imperium.jpg') }}" alt=""/>
+        </div>
+        <h2 class="titlemenu">L'Imperium</h2>
+        </a>
+    </section>
+
+    <section class="container-section mt-5 posrel">
+        <a class="colorsand" href="{{ path('together') }}">
+        <div class="container-img filter overflow-hidden posrel">
+            <img class="imgfull" src="{{ asset('assets/img/Together.jpg') }}" alt=""/>
+        </div>
+        <h2 class="titlemenu">Vivre Ensemble</h2>
+        </a>
+    </section>
+
+{% endblock %}
