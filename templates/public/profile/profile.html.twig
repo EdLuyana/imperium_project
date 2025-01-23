@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="text-center">Mon Profil</h1>
+        <div class="row mt-4">
+            <!-- Informations personnelles -->
+            <div class="col-md-6">
+                <h3>Informations personnelles</h3>
+
+                <p><strong>Email :</strong> {{ user.email }}</p>
+
+                <!-- Formulaire pour modifier l'email -->
+                <h3 class="mt-4">Modifier l'email</h3>
+                {{ form_start(formEmail) }}
+                {{ form_row(formEmail.email) }}
+                <button type="submit" class="btn btn-primary mt-3">Mettre à jour</button>
+                {{ form_end(formEmail) }}
+            </div>
+
+            <!-- Formulaire pour modifier le mot de passe -->
+            <div class="col-md-6">
+                <h3>Modifier le mot de passe</h3>
+                {{ form_start(formPassword) }}
+                {{ form_row(formPassword.currentPassword) }}
+                {{ form_row(formPassword.newPassword) }}
+                {{ form_row(formPassword.confirmPassword) }}
+                <button type="submit" class="btn btn-primary mt-3">Mettre à jour</button>
+                {{ form_end(formPassword) }}
+            </div>
+        </div>
+
+        <!-- Formulaire de déconnexion -->
+        <div class="mt-4 text-center">
+            <form action="{{ path('app_logout') }}" method="post">
+                <button type="submit" class="btn btn-danger">Se déconnecter</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

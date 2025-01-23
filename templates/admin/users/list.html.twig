@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des utilisateurs{% endblock %}
+
+{% block body %}
+    <h1>Liste des utilisateurs</h1>
+
+    {% if users is not empty %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Rôle</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.roles | join(', ') }}</td>
+                    <td>
+                        <a href="{{ path('admin_update_user', {id: user.id}) }}" class="btn btn-primary">Modifier</a>
+                        <a href="{{ path('admin_delete_user', {id: user.id}) }}" class="btn btn-danger">Supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Aucun utilisateur trouvé.</p>
+    {% endif %}
+
+    <a href="{{ path('admin_create_user') }}" class="btn btn-success">Créer un utilisateur</a>
+    <a href="{{ path('admin_dashboard') }}">Dashboard Admin</a>
+{% endblock %}

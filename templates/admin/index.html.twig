@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin - Panneau d'administration{% endblock %}
+
+{% block body %}
+    <h2>Panneau d'administration</h2>
+    <p>Bienvenue dans l'interface d'administration. Choisissez une section à gérer :</p>
+    <ul>
+        <li>
+            <a href="{{ path('admin_list_articles') }}">Gérer les articles</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_list_categories') }}">Gérer les catégories</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_list_users') }}">Liste des utilisateurs</a>
+        </li>
+    </ul>
+    <a href="{{ path('admin_list_articles') }}" class="btn btn-secondary mt-3">Retour</a>
+{% endblock %}

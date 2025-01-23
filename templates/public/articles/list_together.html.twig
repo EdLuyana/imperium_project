@@ -5,104 +5,20 @@
 {% block body %}
     <h2 class="colorred fontsz6 mrgleft">Vivre Ensemble</h2>
 
-    <h3 class="fontsz4 mrgleft"> Nos Ennemis </h3>
+    <h3 class="fontsz4 mrgleft">Nos Ennemis</h3>
 
-    <article class="row mt-5">
-        <div class="bgblue col-11 offset-1 d-flex justify-content-start g-0">
-            <div class="square-container col-4 g-0 mrg2 posrel">
-                <img class="img-cover" src="{{ asset('assets/img/Necrons.jpg') }}">
+    {% for article in articles %}
+        <article class="row mt-5">
+            <div class="bgblue col-11 {% if loop.index is even %}offset-1{% endif %} d-flex justify-content-start g-0">
+                <div class="square-container col-4 g-0 mrg2 posrel">
+                    <img class="img-cover" src="{{ asset('uploads/images/' ~ article.image) }}" alt="{{ article.title }}">
+                </div>
+                <div class="col-6 mrgleft">
+                    <h4 class="colorsand fontsz5">{{ article.title }}</h4>
+                    <p class="colorwhite">{{ article.description }}</p>
+                </div>
             </div>
-            <div class="col-6 mrgleft">
-                <h4 class="colorsand fontsz5">Necrons</h4>
-                <p class="margleft colorwhite">Les Nécrons, ces abominations mécaniques, ne sont rien d’autre qu’une insulte à
-                    l’Empereur et à tout ce
-                    qui est sacré. Ces coquilles vides, dépourvues d’âme, avancent silencieusement, sans émotion, tels
-                    des
-                    spectres d’un âge révolu qui n’a pas sa place dans notre galaxie. Ils ne connaissent ni la gloire du
-                    sacrifice, ni l’honneur du combat. Leur "immortalité" n’est qu’un mensonge hideux, un blasphème
-                    contre
-                    la pureté de la vie. Pire encore, ils ont troqué leur chair et leur humanité pour des carcasses
-                    froides,
-                    devenant des pions serviles d’entités cosmiques encore plus viles qu’eux. Les Nécrons ne méritent
-                    qu’une
-                    chose : être réduits en cendres par la lumière de l’Empereur et effacés des annales de
-                    l’histoire.</p>
-            </div>
-        </div>
-    </article>
-
-
-    <article class="row mt-5">
-        <div class="bgblue col-11 d-flex justify-content-start g-0">
-            <div class="square-container col-4 g-0 mrg2 posrel">
-                <img class="img-cover" src="{{ asset('assets/img/Tyranids.jpg') }}">
-            </div>
-            <div  class="col-6 mrgleft">
-                <h4 class="colorsand fontsz5">Tyranides</h4>
-                <p class="colorwhite">Les Tyranides… une horde immonde de créatures venues d’un autre endroit, un fléau
-                    vivant dévorant tout
-                    sur son passage. Ils ne sont rien de plus qu’une masse insatiable de chair et de crocs, une tempête
-                    de
-                    destruction qui ne laisse que des mondes morts derrière elle. Ces bêtes ne connaissent ni honneur,
-                    ni
-                    foi, ni même une véritable pensée – elles sont le reflet d’un chaos primal, une marée qui ne cesse
-                    de
-                    croître. Leur existence même est une menace pour l’humanité et pour tout ce que l’Empereur a bâti.
-                    Mais
-                    qu’ils viennent, ces monstres sans âme ! Chaque coup porté, chaque bête abattue par le bolter ou la
-                    lame
-                    d’un Space Marine, est une offrande au Trône d’Or et une preuve que l’humanité ne pliera jamais face
-                    à
-                    ces créatures dégoûtantes.</p>
-            </div>
-        </div>
-    </article>
-
-    <article class="row mt-5">
-        <div class="bgblue col-11 offset-1 d-flex justify-content-start g-0">
-            <div class="square-container col-4 g-0 mrg2 posrel">
-                <img class="img-cover" src="{{ asset('assets/img/Eldar.png') }}">
-            </div>
-            <div class="col-6 mrgleft">
-                <h4 class="colorsand fontsz5">Eldars</h4>
-                <p class="colorwhite">Les Eldars... ces xénos prétentieux et dégénérés qui osent se considérer comme nos
-                    supérieurs. Leur
-                    arrogance n'a d'égal que leur lâcheté, car ils se cachent derrière leurs ruses et leurs sorcelleries
-                    au
-                    lieu d'affronter leurs ennemis avec honneur. Ils se drapent dans leur passé glorieux, mais leur
-                    empire
-                    est tombé à cause de leur propre corruption et décadence. Leur existence n'est qu'une ombre d'un âge
-                    perdu, et leurs ambitions sont un poison pour la galaxie. Mais qu’ils se méfient ! Leur vitesse et
-                    leurs
-                    tours ne les sauveront pas de la juste colère d’un Space Marine. Sous le regard de l’Empereur, nous
-                    les
-                    traquerons jusqu’au dernier et purifierons leurs mondes pour les rendre dignes de servir
-                    l’humanité.</p>
-            </div>
-        </div>
-    </article>
-
-    <article class="row mt-5">
-        <div class="bgblue col-11 d-flex justify-content-start g-0">
-            <div class="square-container col-4 g-0 mrg2 posrel">
-                <img class="img-cover" src="{{ asset('assets/img/Orks.jpg') }}">
-            </div>
-            <div  class="col-6 mrgleft">
-                <h4 class="colorsand fontsz5">Orks</h4>
-                <p class="colorwhite">
-                    Les Orks sont une abomination, une force de destruction pure qui ne connaît que le chaos et la
-                    guerre.
-                    Leur existence ne repose sur aucune forme de raison, si ce n’est celle d’anéantir et de semer la
-                    confusion partout où ils passent. Leur société, bâtie sur la violence et la brutalité, n’a aucune
-                    place
-                    pour la dignité ou l’honneur. Ces créatures n’ont ni stratégie ni finesse, leur seul but étant de se
-                    battre pour le plaisir de se battre. En tant que Space Marine, je considère leur présence comme une
-                    insulte à l'ordre et à la discipline que nous, les défenseurs de l'Humanité, incarnons. Chaque
-                    bataille
-                    contre eux est une épreuve, mais aussi une nécessité : leur élimination est vitale pour la survie de
-                    l’Imperium.</p>
-            </div>
-        </div>
-    </article>
+        </article>
+    {% endfor %}
 
 {% endblock %}

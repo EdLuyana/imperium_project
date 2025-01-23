@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Supprimer un utilisateur{% endblock %}
+
+{% block body %}
+    <h1>Supprimer un utilisateur</h1>
+
+    <p>Êtes-vous sûr de vouloir supprimer l'utilisateur <strong>{{ user.name }}</strong> ? Cette action est irréversible.</p>
+
+    <form method="post" action="{{ path('admin_delete_user', {id: user.id}) }}">
+        <button type="submit" class="btn btn-danger">Supprimer</button>
+        <a href="{{ path('admin_list_users') }}" class="btn btn-secondary">Annuler</a>
+    </form>
+    <a href="{{ path('admin_dashboard') }}">Dashboard Admin</a>
+{% endblock %}

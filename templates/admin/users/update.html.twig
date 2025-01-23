@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un utilisateur{% endblock %}
+
+{% block body %}
+    <h1>Modifier un utilisateur</h1>
+
+    <form method="post" action="{{ path('admin_update_user', {id: userToUpdate.id}) }}">
+        {{ form_start(userForm) }}
+        <div class="form-group">
+            {{ form_label(userForm.name) }}
+            {{ form_widget(userForm.name, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(userForm.email) }}
+            {{ form_widget(userForm.email, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(userForm.password) }}
+            {{ form_widget(userForm.password, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(userForm.roles) }}
+            {{ form_widget(userForm.roles, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <a href="{{ path('admin_list_users') }}" class="btn btn-secondary">Annuler</a>
+        {{ form_end(userForm) }}
+    </form>
+    <a href="{{ path('admin_dashboard') }}">Dashboard Admin</a>
+{% endblock %}

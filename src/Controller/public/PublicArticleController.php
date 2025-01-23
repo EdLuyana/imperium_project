@@ -3,6 +3,7 @@
 namespace App\Controller\public;
 
 use App\Repository\ArticleRepository;
+use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -17,11 +18,11 @@ class PublicArticleController extends AbstractController
         return $this->render('public/articles/list_imperium.html.twig', ['articles' => $articles]);
     }
 #[Route('/list-articles/together', 'together', methods: ['GET'])]
-    public function publicListArticleTogether(ArticleRepository $articleRepository): Response
+    public function publicListArticleTogether(ArticleRepository $articleRepository, CategoryRepository $categoryRepository): Response
 {
 
-    $article = $articleRepository->findAll();
+    $articles = $articleRepository->findByCategory('Ennemis');
 
-    return $this->render('public/articles/list_together.html.twig', ['article' => $article]);
+    return $this->render('public/articles/list_together.html.twig', ['articles' => $articles]);
     }
 }
