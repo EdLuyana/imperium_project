@@ -18,7 +18,7 @@ class PublicArticleController extends AbstractController
         return $this->render('public/articles/list_imperium.html.twig', ['articles' => $articles]);
     }
 #[Route('/list-articles/together', 'together', methods: ['GET'])]
-    public function publicListArticleTogether(ArticleRepository $articleRepository, CategoryRepository $categoryRepository): Response
+    public function publicListArticleTogether(ArticleRepository $articleRepository): Response
 {
 
     $articles = $articleRepository->findByCategory('Ennemis');
